@@ -27,7 +27,14 @@ def analysePublisher(train):
     train=train[["publisher","is_fake"]]
     print(train.groupby(by="publisher" ).sum()/train.groupby(by="publisher" ).count())
 
-analysePublisher(train)
+def calcCorrelation(train):
+    correlation = train.corr().round(
+        2);
+    print(correlation)
+    ax = sns.heatmap(correlation, annot=True)
+    plt.show()
+calcCorrelation(train)
+#analysePublisher(train)
 #plotFraudProbality(train)
 
 
