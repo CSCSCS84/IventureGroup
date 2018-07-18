@@ -12,7 +12,7 @@ filename = "%s/Input/test_dataset_sample10000.csv" % (
 
 train = pd.read_csv(filename,
                     index_col='username')
-train=train[1:10000]
+
 
 clf = KNeighborsClassifier(n_neighbors = 5)
 columns = ["publisherFake0.0", "publisherFake0.1", "publisherFake0.2", "publisherFake0.3", "publisherFake0.4",
