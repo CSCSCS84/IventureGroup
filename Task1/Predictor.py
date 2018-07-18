@@ -1,3 +1,5 @@
+#Predicts if a user is fraud or not. Usage: filenameTrain is the train dataset. filenameTest is the dataset of the user
+#where the predictions is done. The results are saved in the output folder with the name filenamePrediction
 from Task1 import PrepareInput
 from Task1 import InputReader
 from Task1 import TunedClassifiers
@@ -21,8 +23,8 @@ def createInstances(filenameTrain, filenameTest):
     return [X_train, y_train, X_test]
 
 
-filenameTrain = "test_dataset_sample10000"
-filenameTest = "test_dataset_sample10000"
+filenameTrain = "test_dataset"
+filenameTest = "test_dataset"
 filenamePrediction = "Prediction"
 
 X_train, y_train, X_test = createInstances(filenameTrain, filenameTest)

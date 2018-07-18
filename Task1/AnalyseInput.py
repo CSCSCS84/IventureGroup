@@ -1,10 +1,8 @@
-import numpy as np
+#Analyse data that is already prepared
+from Task1 import InputReader
 import seaborn as sns
 import matplotlib.pyplot as plt
-import pandas as pd
 
-print(train.isnull().sum())
-print(train.info())
 
 def plotFraudProbality(train):
     features = ["partner", "domainName_com", "domainName_de", "domainName_eu", "domainName_ch", "domainNumber"]
@@ -13,20 +11,23 @@ def plotFraudProbality(train):
         plot = plot.set_ylabels("fraud probality")
         plt.show()
 
+
 def analysePublisher(train):
-    train=train[["publisher","is_fake"]]
-    print(train.groupby(by="publisher" ).sum()/train.groupby(by="publisher" ).count())
+    train = train[["publisher", "is_fake"]]
+    print(train.groupby(by="publisher").sum() / train.groupby(by="publisher").count())
+
 
 def calcCorrelation(train):
-    correlation = train.corr().round(
-        2);
-    print(correlation)
+    correlation = train.corr().round(2)
     ax = sns.heatmap(correlation, annot=True)
     plt.show()
 
 
+filenameTrain = "test_datasetPrepared"
+train = InputReader.createInstance(filenameTrain)
+
+print(train.isnull().sum())
+print(train.info())
 calcCorrelation(train)
-#analysePublisher(train)
-#plotFraudProbality(train)
-
-
+analysePublisher(train)
+plotFraudProbality(train)

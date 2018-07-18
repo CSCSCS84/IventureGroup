@@ -1,5 +1,5 @@
-from Task1 import InputReader
 #checks if all partner and publisher data start with "par_" or "pub_"
+from Task1 import InputReader
 
 def checkPartner(partner):
     if partner[0:4] != "par_":

@@ -1,28 +1,23 @@
+# script for a first view how the classifiers perform on prepared dataset
 from sklearn.model_selection import cross_val_score
-from sklearn.neighbors import KNeighborsClassifier
-import pandas as pd
+from Task1 import InputReader
 import numpy as np
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
 
+filename = "test_dataset_sample10000Prepared"
+train = InputReader.createInstance(filename)
 
-import os
-
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-filename = "%s/Input/test_dataset_sample10000.csv" % (
-    ROOT_DIR)
-
-train = pd.read_csv(filename,
-                    index_col='username')
-
-
-clf = KNeighborsClassifier(n_neighbors = 5)
-columns = ["publisherFake0.0", "publisherFake0.1", "publisherFake0.2", "publisherFake0.3", "publisherFake0.4",
+clf = KNeighborsClassifier(n_neighbors=5)
+features = ["publisherFake0.0", "publisherFake0.1", "publisherFake0.2", "publisherFake0.3", "publisherFake0.4",
            "publisherFake0.5", "publisherFake0.6", "publisherFake0.7", "publisherFake0.8", "publisherFake0.9",
            "partner", "domainNumber"]
 
-X = train[columns].as_matrix()
-y = train["is_fake"].as_matrix()
-cv_scores = cross_val_score(clf, X, y)
+X_train = train[features].as_matrix()
+y_train = train["is_fake"].as_matrix()
+cv_scores = cross_val_score(clf, X_train, y_train)
 
-print('Cross-validation scores (3-fold):', cv_scores)
-print('Mean cross-validation score (3-fold): {:.3f}'
-     .format(np.mean(cv_scores)))
+print("Cross-validation scores (3-fold):", cv_scores)
+print("Mean cross-validation score (3-fold): {:.3f}"
+      .format(np.mean(cv_scores)))
