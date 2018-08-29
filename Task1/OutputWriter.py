@@ -8,3 +8,5 @@ def writeResultToFile(y_test, X_test, filename):
     prediction = pd.DataFrame(index=X_test.index)
     prediction["is_fake"] = y_test
     prediction.to_csv(file, header='username\t is_fake', sep=',')
+
+
